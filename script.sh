@@ -1,7 +1,20 @@
 #!/bin/bash
 
+#############################################
+#
+# SerieB.sh - Script para monitaramento de jogos da Série B do Brasileirão
+#
+# Autor: Matheus Silvano (matheussilvano2005@gmail.com)
+# Data Criação: 13/07/2024
+#
+# Descrição: Mostra informações das próximas partidas e das partidas que se encontram em andamento no Brasileirão Série B
+#
+# Exemplo de uso: ./SerieB.sh
+#
+#######################################################
+
 # Substitua YOUR_API_KEY pela sua chave de API
-API_KEY="d52171dfc4e36f92e7662d1f99f4ff93"
+API_KEY="YOUR_API_KEY"
 LEAGUE_ID="72" # ID da Série B do Brasileirão na API
 
 # Função para formatar a data (removendo os segundos)
