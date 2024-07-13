@@ -2,7 +2,7 @@
 
 # Substitua YOUR_API_KEY pela sua chave de API da https://dashboard.api-football.com/
 API_KEY="d52171dfc4e36f92e7662d1f99f4ff93"
-LEAGUE_ID="71" # ID da Série B do Brasileirão na API de Futebol (verifique o ID correto na documentação da API)
+LEAGUE_ID="72" # ID da Série B do Brasileirão na API de Futebol (verifique o ID correto na documentação da API)
 
 # Função para obter informações sobre os próximos jogos
 function get_upcoming_matches() {
