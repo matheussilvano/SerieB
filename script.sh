@@ -17,7 +17,7 @@ function get_upcoming_matches() {
     -H "x-rapidapi-key: ${API_KEY}" \
     -H "x-rapidapi-host: v3.football.api-sports.io" | jq -r '
     .response[] | 
-    "Data: \(.fixture.date) | Time da Casa: \(.teams.home.name) | Time Visitante: \(.teams.away.name)\n"' | while IFS="|" read -r date home away; do
+    "Time da Casa: \(.teams.home.name) | Time Visitante: \(.teams.away.name)\n"' | while IFS="|" read -r date home away; do
       formatted_date=$(format_date "$date")
       echo -e "Data: $formatted_date\n$home\n$away\n"
     done
@@ -29,7 +29,7 @@ function get_live_matches() {
     -H "x-rapidapi-key: ${API_KEY}" \
     -H "x-rapidapi-host: v3.football.api-sports.io" | jq -r '
     .response[] | 
-    "Data: \(.fixture.date) | Time da Casa: \(.teams.home.name) (\(.goals.home // "N/A")) | Time Visitante: \(.teams.away.name) (\(.goals.away // "N/A")) | Status: \(.status.long // "N/A") (\(.status.short // "N/A")) - \(.status.elapsed // "N/A") minutos\n"' | while IFS="|" read -r date home away status; do
+    "Time da Casa: \(.teams.home.name) (\(.goals.home // "N/A")) | Time Visitante: \(.teams.away.name) (\(.goals.away // "N/A")) | Status: \(.status.long // "Desconhecido") (\(.status.short // "N/A")) - \(.status.elapsed // "Desconhecido") minutos\n"' | while IFS="|" read -r date home away status; do
       formatted_date=$(format_date "$date")
       echo -e "Data: $formatted_date\n$home\n$away\n$status\n"
     done
