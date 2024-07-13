@@ -10,7 +10,7 @@ function get_upcoming_matches() {
     -H "x-rapidapi-key: ${API_KEY}" \
     -H "x-rapidapi-host: v3.football.api-sports.io" | jq -r '
     .response[] | 
-    "Data: \(.fixture.date)\nTime da Casa: \(.teams.home.name) (\(.teams.home.goals))\nTime Visitante: \(.teams.away.name) (\(.teams.away.goals))\nStatus: \(.fixture.status.long) (\(.fixture.status.short)) - \(.fixture.status.elapsed) minutos\n"'
+    "Data: \(.fixture.date)\nTime da Casa: \(.teams.home.name)\nTime Visitante: \(.teams.away.name)\nStatus: \(.fixture.status.long) (\(.fixture.status.short))\n"'
 }
 
 # Função para obter informações sobre jogos em andamento
