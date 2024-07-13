@@ -6,7 +6,9 @@ LEAGUE_ID="72" # ID da Série B do Brasileirão na API
 
 # Função para formatar a data
 function format_date() {
-  date -d "$1" +"%d/%m/%Y %H:%M:%S"
+  local iso_date="$1"
+  local formatted_date=$(date -d "$(echo $iso_date | sed 's/\(.*\)T\(.*\)+.*/\1 \2/')" +"%d/%m/%Y %H:%M:%S")
+  echo "$formatted_date"
 }
 
 # Função para obter informações sobre os próximos jogos
