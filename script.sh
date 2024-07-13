@@ -15,7 +15,10 @@ function get_upcoming_matches() {
     -H "x-rapidapi-key: ${API_KEY}" \
     -H "x-rapidapi-host: v3.football.api-sports.io" | jq -r '
     .response[] | 
-    "Data: \(.fixture.date | fromdateiso8601 | strftime("%d/%m/%Y %H:%M:%S"))\nTime da Casa: \(.teams.home.name)\nTime Visitante: \(.teams.away.name)\n"'
+    "Data: \(.fixture.date) | Time da Casa: \(.teams.home.name) | Time Visitante: \(.teams.away.name)\n"' | while IFS="|" read -r date home away; do
+      formatted_date=$(format_date "$date")
+      echo -e "Data: $formatted_date\n$home\n$away\n"
+    done
 }
 
 # Função para obter informações sobre jogos em andamento
@@ -24,7 +27,10 @@ function get_live_matches() {
     -H "x-rapidapi-key: ${API_KEY}" \
     -H "x-rapidapi-host: v3.football.api-sports.io" | jq -r '
     .response[] | 
-    "Data: \(.fixture.date | fromdateiso8601 | strftime("%d/%m/%Y %H:%M:%S"))\nTime da Casa: \(.teams.home.name) (\(.goals.home // "N/A"))\nTime Visitante: \(.teams.away.name) (\(.goals.away // "N/A"))\nStatus: \(.status.long // "N/A") (\(.status.short // "N/A")) - \(.status.elapsed // "N/A") minutos\n"'
+    "Data: \(.fixture.date) | Time da Casa: \(.teams.home.name) (\(.goals.home // "N/A")) | Time Visitante: \(.teams.away.name) (\(.goals.away // "N/A")) | Status: \(.status.long // "N/A") (\(.status.short // "N/A")) - \(.status.elapsed // "N/A") minutos\n"' | while IFS="|" read -r date home away status; do
+      formatted_date=$(format_date "$date")
+      echo -e "Data: $formatted_date\n$home\n$away\n$status\n"
+    done
 }
 
 echo "Próximos jogos da Série B do Brasileirão:"
